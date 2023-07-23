@@ -27,8 +27,7 @@ public class CalendarPrinter {
     static List<List<Day>> getWeeks(int year, Month m) {
         LocalDate date = LocalDate.of(year, m, 1);
         List<List<Day>> result = new ArrayList<>();
-        List<Day> week = new ArrayList<>();
-        week.addAll(Day.duds(date.getDayOfWeek()));
+        List<Day> week = new ArrayList<>(Day.duds(date.getDayOfWeek()));
         while (date.getMonth() == m) {
             week.add(Day.create(date));
             if (date.getDayOfWeek() == DayOfWeek.SUNDAY) {
