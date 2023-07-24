@@ -11,18 +11,21 @@ import java.util.stream.Collectors;
 
 public class CalendarPrinter {
 
-
     public static void main(String[] args) {
         int year = 2024;
+        List<String> words = new ArrayList<>();
         for (Month m : Month.values()) {
-            System.out.println(m.getDisplayName(TextStyle.FULL, Locale.GERMANY) + " " + year);
+            words.add(
+                    String.format("%-20s",
+                            m.getDisplayName(TextStyle.FULL, Locale.GERMANY) + " " + year));
             List<List<Day>> weeks = getWeeks(year, m);
-            System.out.println("Mo Di Mi Do Fr Sa So");
+            words.add("Mo Di Mi Do Fr Sa So");
             for (List<Day> week : weeks) {
-                System.out.println(formatWeek(week));
+                words.add(formatWeek(week));
             }
-            System.out.println();
+            words.add(" ".repeat(20));
         }
+        Columns.print(words);
     }
 
     static List<List<Day>> getWeeks(int year, Month m) {
@@ -38,7 +41,7 @@ public class CalendarPrinter {
             date = date.plusDays(1);
         }
         if (!week.isEmpty()) {
-            result.add(List.copyOf(week));
+            result.add(Day.fill(week));
         }
         return result;
     }

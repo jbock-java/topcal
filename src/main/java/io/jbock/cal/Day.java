@@ -31,6 +31,14 @@ final class Day {
         return result;
     }
 
+    static List<Day> fill(List<Day> week) {
+        List<Day> result = new ArrayList<>(week);
+        while (result.size() < 7) {
+            result.add(dud());
+        }
+        return result;
+    }
+
     String string() {
         if (date == null) {
             return string;
