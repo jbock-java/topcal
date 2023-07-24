@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class CalendarPrinter {
 
+
     public static void main(String[] args) {
         int year = 2024;
         for (Month m : Month.values()) {
@@ -41,7 +42,7 @@ public class CalendarPrinter {
         }
         return result;
     }
-    
+
     static String formatWeek(List<Day> week) {
         return week.stream()
                 .map(Day::string)

@@ -8,17 +8,19 @@ import java.util.List;
 final class Day {
     
     private final String string;
+    private final LocalDate date;
 
-    private Day(String string) {
+    private Day(String string, LocalDate date) {
         this.string = string;
+        this.date = date;
     }
 
     static Day create(LocalDate date) {
-        return new Day(String.format("%2d", date.getDayOfMonth()));
+        return new Day(format(date), date);
     }
 
     static Day dud() {
-        return new Day("  ");
+        return new Day("  ", null);
     }
 
     static List<Day> duds(DayOfWeek dayOfWeek) {
@@ -30,6 +32,16 @@ final class Day {
     }
 
     String string() {
+        if (date == null) {
+            return string;
+        }
+        if (Dates.HIGHLIGHT.contains(date)) {
+            return AnsiCode.highlight(format(date));
+        }
         return string;
+    }
+
+    private static String format(LocalDate date) {
+        return String.format("%2d", date.getDayOfMonth());
     }
 }
