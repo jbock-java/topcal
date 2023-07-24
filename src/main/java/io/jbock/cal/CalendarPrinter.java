@@ -23,9 +23,21 @@ public class CalendarPrinter {
             for (List<Day> week : weeks) {
                 words.add(formatWeek(week));
             }
-            words.add(" ".repeat(20));
         }
-        Columns.print(words);
+        printColumns(words);
+    }
+
+    private static void printColumns(List<String> words) {
+        List<String> buffer = new ArrayList<>();
+        for (String word : words) {
+            buffer.add(word);
+            if (buffer.size() == 24) {
+                Columns.print(buffer);
+                System.out.println();
+                System.out.flush();
+                buffer.clear();
+            }
+        }
     }
 
     static List<List<Day>> getWeeks(int year, Month m) {
@@ -42,6 +54,9 @@ public class CalendarPrinter {
         }
         if (!week.isEmpty()) {
             result.add(Day.fill(week));
+        }
+        while (result.size() < 6) {
+            result.add(Day.duds());
         }
         return result;
     }

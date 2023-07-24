@@ -31,6 +31,14 @@ final class Day {
         return result;
     }
 
+    static List<Day> duds() {
+        List<Day> result = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            result.add(dud());
+        }
+        return result;
+    }
+
     static List<Day> fill(List<Day> week) {
         List<Day> result = new ArrayList<>(week);
         while (result.size() < 7) {
