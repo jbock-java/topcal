@@ -6,7 +6,12 @@ class AnsiCode {
     private static final char ESC = 0x1B;
     private static final String CSI = ESC + "[";
     private static final String INVERT = CSI + "48;5;11m";
+    private static final String GRAY = CSI + "38;5;250m";
     private static final String RESET = CSI + "m";
+
+    static String gray(String text) {
+        return GRAY + text + RESET;
+    }
 
     static String highlight(String text) {
         if (text.startsWith(" ")) {

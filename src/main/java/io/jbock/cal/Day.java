@@ -60,4 +60,8 @@ final class Day {
     private static String format(LocalDate date) {
         return String.format("%2d", date.getDayOfMonth());
     }
+
+    boolean isSunday() {
+        return date != null && date.getDayOfWeek() == DayOfWeek.SUNDAY;
+    }
 }

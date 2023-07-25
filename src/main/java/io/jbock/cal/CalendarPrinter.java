@@ -14,13 +14,15 @@ public class CalendarPrinter {
     public static void main(String[] args) {
         int year = 2024;
         List<String> words = new ArrayList<>();
+        int kw = 1;
         for (Month m : Month.values()) {
             words.add(
-                    String.format("%-20s",
+                    String.format("   %-20s",
                             m.getDisplayName(TextStyle.FULL, Locale.GERMANY) + " " + year));
-            List<List<Day>> weeks = getWeeks(year, m);
-            words.add("Mo Di Mi Do Fr Sa So");
-            for (List<Day> week : weeks) {
+            List<Week> weeks = getWeeks(kw, year, m);
+            kw += weeks.stream().mapToInt(Week::kwIncrement).sum();
+            words.add("   Mo Di Mi Do Fr Sa So");
+            for (Week week : weeks) {
                 words.add(formatWeek(week));
             }
         }
@@ -40,29 +42,34 @@ public class CalendarPrinter {
         }
     }
 
-    static List<List<Day>> getWeeks(int year, Month m) {
+    static List<Week> getWeeks(int kw, int year, Month m) {
         LocalDate date = LocalDate.of(year, m, 1);
-        List<List<Day>> result = new ArrayList<>();
+        List<Week> result = new ArrayList<>();
         List<Day> week = new ArrayList<>(Day.duds(date.getDayOfWeek()));
         while (date.getMonth() == m) {
             week.add(Day.create(date));
             if (date.getDayOfWeek() == DayOfWeek.SUNDAY) {
-                result.add(List.copyOf(week));
+                result.add(Week.create(kw, List.copyOf(week)));
+                kw++;
                 week.clear();
             }
             date = date.plusDays(1);
         }
         if (!week.isEmpty()) {
-            result.add(Day.fill(week));
+            result.add(Week.create(kw, Day.fill(week)));
         }
         while (result.size() < 6) {
-            result.add(Day.duds());
+            result.add(Week.create(Day.duds()));
         }
         return result;
     }
 
-    static String formatWeek(List<Day> week) {
-        return week.stream()
+    static String formatWeek(Week week) {
+        String kwString = week.kw.stream()
+                .mapToObj(kw -> AnsiCode.gray(String.format("%02d", kw)))
+                .findFirst()
+                .orElse("  ");
+        return kwString + ' ' + week.days.stream()
                 .map(Day::string)
                 .collect(Collectors.joining(" "));
     }
