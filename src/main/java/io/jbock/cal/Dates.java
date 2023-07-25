@@ -8,7 +8,23 @@ import java.util.Set;
 
 class Dates {
 
-    static final Set<LocalDate> HIGHLIGHT = createHighlight();
+    static final Set<LocalDate> HIGHLIGHT = createHighlight2023();
+
+    private static Set<LocalDate> createHighlight2023() {
+        Set<LocalDate> result = new HashSet<>();
+        result.addAll(range(LocalDate.parse("2023-07-06"), LocalDate.parse("2023-07-26")));
+        result.addAll(pair(LocalDate.parse("2023-08-26")));
+        result.addAll(pair(LocalDate.parse("2023-09-09")));
+        result.addAll(pair(LocalDate.parse("2023-09-23")));
+        result.addAll(pair(LocalDate.parse("2023-10-07")));
+        result.addAll(range(LocalDate.parse("2023-10-14"), LocalDate.parse("2023-10-22")));
+        result.addAll(pair(LocalDate.parse("2023-11-04")));
+        result.addAll(pair(LocalDate.parse("2023-11-18")));
+        result.addAll(pair(LocalDate.parse("2023-12-02")));
+        result.addAll(pair(LocalDate.parse("2023-12-16")));
+        result.addAll(range(LocalDate.parse("2023-12-25"), LocalDate.parse("2023-12-30")));
+        return result;
+    }
 
     private static Set<LocalDate> createHighlight() {
         Set<LocalDate> result = new HashSet<>();
