@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class CalendarPrinter {
 
     public static void main(String[] args) {
-        int year = 2023;
+        int year = 2024;
         List<String> words = new ArrayList<>();
         int kw = 1;
         for (Month m : Month.values()) {
