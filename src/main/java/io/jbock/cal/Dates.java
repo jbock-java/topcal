@@ -30,10 +30,10 @@ class Dates {
         Set<LocalDate> result = new HashSet<>();
         result.addAll(pair(LocalDate.parse("2024-01-06")));
         result.addAll(pair(LocalDate.parse("2024-01-20")));
-        result.addAll(range(LocalDate.parse("2024-02-02"), LocalDate.parse("2024-02-04")));
+        result.addAll(range(LocalDate.parse("2024-02-03"), LocalDate.parse("2024-02-04")));
         result.addAll(pair(LocalDate.parse("2024-02-17")));
         result.addAll(pair(LocalDate.parse("2024-03-02")));
-        result.addAll(range(LocalDate.parse("2024-03-22"), LocalDate.parse("2024-03-28")));
+        result.addAll(range(LocalDate.parse("2024-03-23"), LocalDate.parse("2024-03-30")));
         result.addAll(pair(LocalDate.parse("2024-04-13")));
         result.addAll(pair(LocalDate.parse("2024-04-27")));
         result.addAll(range(LocalDate.parse("2024-05-09"), LocalDate.parse("2024-05-12")));
@@ -44,7 +44,7 @@ class Dates {
         result.addAll(pair(LocalDate.parse("2024-08-31")));
         result.addAll(pair(LocalDate.parse("2024-09-14")));
         result.addAll(pair(LocalDate.parse("2024-09-28")));
-        result.addAll(range(LocalDate.parse("2024-10-13"), LocalDate.parse("2024-10-20")));
+        result.addAll(range(LocalDate.parse("2024-10-11"), LocalDate.parse("2024-10-19")));
         result.addAll(pair(LocalDate.parse("2024-10-26")));
         result.addAll(pair(LocalDate.parse("2024-11-09")));
         result.addAll(pair(LocalDate.parse("2024-11-23")));
